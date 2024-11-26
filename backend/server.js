@@ -1,6 +1,6 @@
-const express = require('express');
-const cors = require('cors');
-const movies = './api/movies.route.js';
+import express from 'express';
+import cors from 'cors';
+import movies from './api/movies.route.js';
 
 const app = express();
 

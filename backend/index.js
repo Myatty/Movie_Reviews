@@ -1,8 +1,10 @@
-const app = require('./server');
-const mongodb = require("mongodb");
-const dotenv = require('dotenv')
+import app from './server.js';
+import mongodb from "mongodb";
+import dotenv from "dotenv";
 
 async function main(){
+
+    dotenv.config()
 
     const client = new mongodb.MongoClient(
         process.env.MOVIEREVIEWS_DB_URI
@@ -14,9 +16,10 @@ async function main(){
         //Connect to Mongodb Cluster
         await client.connect();
 
-        app.listen(port, ()=> {
-            console.log("Server is running on PORT " + port);
-        })
+        app.listen(port, () => {
+            console.log(`Server is running on http://localhost:${port}`);
+        });
+        
 
     }catch(e){
         console.error(e);
