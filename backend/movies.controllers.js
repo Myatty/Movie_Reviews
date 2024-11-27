@@ -1,4 +1,4 @@
-import MoviesDAO from '../dao/moviesDAO';
+import MoviesDAO from './dao/moviesDAO.js'; 
 
 export default class MoviesController{
 
@@ -24,6 +24,6 @@ export default class MoviesController{
             entries_per_page: moviesPerPage,
             total_results : totalNumMovies,
         }
-        res.join(response)
+        res.json(response)
     }
 }
