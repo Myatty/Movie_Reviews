@@ -32,25 +32,27 @@ export default class ReviewsController{
         
             const date = new Date();
 
-            const ReviewResponse = await ReviewsDAO.apiUpdateReview(
+            const ReviewResponse = await ReviewsDAO.updateReview(
                 reviewId,
                 req.body.user_id,
                 review,
                 date
-            )
+            );
+            
+            console.log("ReviewResponse:", ReviewResponse); // Debugging log
+            const { error } = ReviewResponse;
+            
 
-            var {error} = ReviewResponse;
-
-            if(error){
-                res.status.json({error});
+            if (error) {
+                res.status(400).json({ error }); 
+                return;
             }
-
             if(ReviewResponse.modifiedCount === 0){
                 throw new Error("Unable to update review. User may not be original poster")
             }
             res.json({status: "Success"})
         }catch(e){
-            res.status(500).json({error: e.message})
+            res.status(500).json({ error: e.message });
         }
     }
 
