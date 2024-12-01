@@ -75,34 +75,4 @@ export default class ReviewsController{
         }
     }
 
-    static async apiGetMovieById(req, res, next){
-
-        try{
-            const id = req.params.id || {};
-            const movie = await MoviesDAO.getMovieById(id);
-
-            if(!movie){
-                res.status(404).json({error : "Not Found"});
-                return
-            }
-
-            res.json(movie);
-        }
-        catch(e){
-            console.log(`Api : ${e}`);
-            res.status(500).json({error: e})
-        }
-    }
-
-    static async apiGetRatings(req, res, next){
-
-        try{
-            let propertyTypes = await MoviesDAO.getRatings();
-            res.json(propertyTypes)
-        }
-        catch(e){
-            console.log(`Api : ${e}`);
-            res.status(500).json({error: e})
-        }
-    }
 }
