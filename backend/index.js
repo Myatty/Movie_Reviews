@@ -18,7 +18,7 @@ async function main(){
         //Connect to Mongodb Cluster
         await client.connect();
         await MoviesDAO.injectDB(client);
-        await reviewsDAO.injectDB(client);
+        await reviewsDAO.injectDB(client);``
 
         app.listen(port, () => {
             console.log(`Server is running on http://localhost:${port}`);
