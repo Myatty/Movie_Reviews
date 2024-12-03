@@ -1,14 +1,35 @@
 import axios from 'axios';
 
-class MovieDataService{
+class MovieDataService {
 
-    getAll(page = 0 ){
+    getAll(page = 0) {
         return axios.get(`http://localhost:5000/api/v1/movies?page=${page}`)
     }
 
-    getId(id){
+    getId(id) {
         return axios.get(`http://localhost:5000/api/v1/movies/id/${id}`)
     }
 
-    
+    find(query, by = 'title', page = 0) {
+        return axios.get(`http://localhost:5000/api/v1/movies?${by}=${query}&page=${page}`)
+    }
+
+    createReview(data) {
+        return axios.post(`http://localhost:5000/api/v1/movie/reviews`, data)
+    }
+
+    updateReview(data){
+        return axios.put(`http://localhost:5000/api/v1/movie/reviews`, data)
+    }
+
+    deleteReview(id, userId) {
+        return axios.delete(`http://localhost:5000/api/v1/movie/reviews`, { data: { review_id: id, user_id: userId } })
+    }
+
+    getRatings(){
+        return axios.get("http://localhost:5000/api/v1/movies/ratings")
+    }
+
 }
+
+export default new MovieDataService()
