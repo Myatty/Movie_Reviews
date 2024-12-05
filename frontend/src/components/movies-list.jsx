@@ -37,7 +37,7 @@ const MoviesList = props => {
             .then(response => {
                 console.log(response.data);
 
-                //starts with all ratings if user doesnt specify ratings
+                //starts with all ratings if user doesn't specify ratings
                 setRatings(["All Ratings"].concat(response.data))
             })
             .catch(e => {
